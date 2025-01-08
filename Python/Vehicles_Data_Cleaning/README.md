@@ -1,5 +1,7 @@
 
-# Hey there,
+# Vehicles Data Cleaning,
+
+> A dataset of waste vehicles with 350,000+ rows is cleaned using pandas and jupyter notebook in python.
 
 This is a Data Cleansing/Cleaning project of **"autos.csv"** dataset which is extracted from [kaggle.com](https://www.kaggle.com/). This dataset contains details of around 350,000+ waste cars.
 
