@@ -1,0 +1,121 @@
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 3:6:10
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 3:18:54
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 3:19:0
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 3:19:23
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 3:19:43
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 3:19:53
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 2000
+DATE : 2024-03-31
+TIME : 3:40:27
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 3:41:52
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 2000
+DATE : 2024-03-31
+TIME : 3:42:7
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 3000
+DATE : 2024-03-31
+TIME : 3:42:13
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 10000
+DATE : 2024-03-31
+TIME : 17:27:23
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 10010
+DATE : 2024-03-31
+TIME : 20:30:4
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 10900
+DATE : 2024-03-31
+TIME : 20:33:1
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 100
+DATE : 2024-03-31
+TIME : 20:35:4
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1000
+DATE : 2024-03-31
+TIME : 21:26:48
+---------------------------------
+
+RECEIVER: 12345678
+AMOUNT: 2000
+DATE : 2024-04-01
+TIME : 8:30:12
+---------------------------------
+
+SENDER: 12345678
+AMOUNT: 2000
+DATE : 2024-04-01
+TIME : 8:30:12
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 1200
+DATE : 2024-04-01
+TIME : 8:38:29
+---------------------------------
+
+SENDER: ATM Deposit
+AMOUNT: 2000
+DATE : 2024-04-01
+TIME : 8:38:53
+---------------------------------
+
+RECEIVER: ATM Withdraw
+AMOUNT: 9000
+DATE : 2024-04-01
+TIME : 8:57:20
+---------------------------------
+

@@ -1,0 +1,14 @@
+{
+    "account_num" :{
+        "current-balance" : 1234,
+        "name": "account-holder-name",
+        "transaction-history" : [
+            {
+                "date-time" : "",
+                "type" : "credited/debited",
+                "sender" : "account-num",
+                "name" : ""
+            }
+        ]
+    }
+}
