@@ -34,9 +34,12 @@ My-Basic-Projects
     |--Python
     |    |-- Audio Creator
     |    |-- Color Picker
+    |    |-- Daily Exchange Rates
+    |    |-- Metro Interstate Traffic
     |    |-- Mobile Data Cleaning
-    |    |-- News Posts Data Cleaning
+    |    |-- Prediction of Future Trends
     |    |-- Python Calculator
+    |    |-- Space Mission
     |    |-- Vehicles Data Cleaning
     |    |-- Video Games Data Cleaning
     |    |-- Web Scrap and Analysis
