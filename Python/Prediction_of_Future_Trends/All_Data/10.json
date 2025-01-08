@@ -1,0 +1,17 @@
+{
+    "apparel & footwear": 0.4,
+    "automotive": 0.28,
+    "construction": 0.39,
+    "consulting & professional services": 0.51,
+    "ecommerce & marketplaces": 0.29,
+    "education": 0.56,
+    "food": 0.46,
+    "health care": 1.07,
+    "health & wellness": 1.02,
+    "information technology & services": 0.44,
+    "industrials & manufacturing": 0.36,
+    "real estate": 0.58,
+    "saas": 0.57,
+    "technology": 0.5,
+    "travel & leisure": 0.19
+}
