@@ -1,6 +1,6 @@
 # ⚡My-Basic-Projects⚡
 
-### **Hey there, this Repository contains **14** basic projects which are developed in different programming languages.**
+### **Hey there, this Repository contains **18** basic projects which are developed in different programming languages.**
 
 
 **I developed these projects to practice and improve my designing and development skills.**
