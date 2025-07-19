@@ -37,6 +37,7 @@ My-Basic-Projects
     |    |-- Daily Exchange Rates
     |    |-- Metro Interstate Traffic
     |    |-- Mobile Data Cleaning
+    |    |-- Online Voting System
     |    |-- Prediction of Future Trends
     |    |-- Python Calculator
     |    |-- Space Mission
