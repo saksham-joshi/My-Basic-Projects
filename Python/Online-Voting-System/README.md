@@ -8,7 +8,7 @@
 - > Written in Python3.
 - > Ui is developed using Pyqt5.
 - > Uses MySQL Database for storing data.
-- Original branch at <a herf="https://github.com/IshanBisht/Online-voting-system-using-python/tree/better-ui"> OnlineVotingSystem/tree/better-ui</a>.
+- > Visit original branch from <a href="https://github.com/IshanBisht/Online-voting-system-using-python/tree/better-ui">here</a>.
 
 ---
 
