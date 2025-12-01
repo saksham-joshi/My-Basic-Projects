@@ -25,7 +25,7 @@ This Project is developed using Python programming languages by utilising module
 
     ## Developer Info:
 - Developed by Saksham Joshi.
-- [@Portfolio](https://sakshamjoshi.netlify.app/)
+- [@Portfolio](https://sakshamjoshi.vercel.app/)
 - [@Linkedin](https://www.linkedin.com/in/sakshamjoshi27)
 - [@GitHub](https://github.com/saksham-joshi)
 - [@X(Twitter)](https://twitter.com/sakshamjoshi27/)

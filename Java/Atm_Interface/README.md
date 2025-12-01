@@ -26,7 +26,7 @@ then type this command to run it.
 
 ## Developer Info:
 - Developed by Saksham Joshi.
-- [@Portfolio](https://sakshamjoshi.netlify.app/)
+- [@Portfolio](https://sakshamjoshi.vercel.app/)
 - [@Linkedin](https://www.linkedin.com/in/sakshamjoshi27)
 - [@GitHub](https://github.com/saksham-joshi)
 - [@X(Twitter)](https://twitter.com/sakshamjoshi27/)

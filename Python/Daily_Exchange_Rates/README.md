@@ -38,5 +38,5 @@ To use this project, make sure to :
 
 - [@SAKSHAM_JOSHI](https://github.com/saksham-joshi)
 - [@Linkedin](https://www.linkedin.com/in/sakshamjoshi27)
-- [@Portfolio](https://sakshamjoshi.netlify.app/)
+- [@Portfolio](https://sakshamjoshi.vercel.app/)
 - [@X(Twitter)](https://twitter.com/sakshamjoshi27/)
