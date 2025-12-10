@@ -4,8 +4,8 @@
 
 ### A collection of 21 beginner projects showcasing my programming journey
 
-![Projects](https://img.shields.io/badge/projects-21-brightgreen)
-![Languages](https://img.shields.io/badge/languages-5-blue)
+![Projects](https://img.shields.io/badge/projects-22-brightgreen)
+![Languages](https://img.shields.io/badge/languages-4-blue)
 ![Status](https://img.shields.io/badge/status-learning-yellow)
 
 </div>
@@ -24,6 +24,7 @@ Welcome to my collection of basic projects! This repository represents the early
 
 <div align="center">
 
+![C](https://img.shields.io/badge/C%20language-blue?style=for-the-badge&logo=c)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 ![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
@@ -78,6 +79,9 @@ Welcome to my collection of basic projects! This repository represents the early
 
 ```
 My-Basic-Projects/
+├── C
+│   └── Modern String
+│
 ├── HTML_CSS_JS/
 │   ├── Folk Weather
 │   ├── MyUtsav
