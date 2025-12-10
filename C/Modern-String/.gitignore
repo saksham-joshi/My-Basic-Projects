@@ -1,0 +1,8 @@
+# executables/object/dynamic files
+*.exe
+*.o
+*.dll
+
+# IDE 
+experi.c
+experi.cpp
