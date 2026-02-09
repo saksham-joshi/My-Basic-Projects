@@ -1,0 +1,208 @@
+:root{
+    --top_title_color:#0b5d8c;
+    --about_sentiment_color:#3781ac;
+    --table_border_color:#0069a1;
+}
+
+#topbar{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+#top_logo{
+    width:70px;
+}
+#top_title{
+    font-family: berlin_sans;
+    font-size: xx-large;
+    font-weight: bold;
+    color:var(--top_title_color);
+}
+
+
+#about_sentiment_analyzer{
+    font-family: roboto_condensed;
+    font-size:large;
+    margin-bottom: 10px;
+    color:var(--about_sentiment_color);
+}
+
+#length_checker {
+    background-color: var(--top_title_color);
+    color:white;
+    padding:7px;
+    float: right;
+    margin-right: 2.5%;
+    margin-bottom: 5px;
+    font-family: ackno;
+    border-radius: 8px;
+}
+#input_box{
+    width: 95%;
+    height: 60vh;
+    border-radius: 8px;
+    font-family: verdana;
+    font-size:medium;
+}
+#execute{
+    font-family: ackno;
+    color:aliceblue;
+    background-color: #066195;
+    letter-spacing: 2px;
+    font-size:medium;
+    float: right;
+    margin-right:2.5%;
+    border-radius: 8px;
+    border:1px solid #055a8c ;
+    padding:4px;
+    box-shadow: rgba(15, 84, 107, 0.25) 0px 54px 55px, rgba(21, 88, 91, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+#execute:hover, #execute:active{
+    background-color: #00659f;
+    font-size:large;
+}
+
+#details_about_output{
+    font-weight: bold;
+    font-size:medium;
+    font-family: ardela_edge;
+    color:var(--top_title_color);
+}
+
+#details_about_output ol{
+    font-family: tahoma;
+    color:var(--about_sentiment_color);
+    line-height: 30px;
+}
+
+#credits_and_info{
+    bottom:0;
+    background-color: rgb(13, 5, 100);
+    width:98%;
+    padding:4px;
+    border-radius: 15px;
+    margin-top:6%;
+    font-size:medium;
+    color:white;
+    
+}
+#credits_and_info ul{
+    font-family: berlin_sans;
+    margin-top: auto;
+}
+#credits_and_info ul li{
+    list-style-type: "»|";
+    color:whitesmoke
+}
+
+#credits_and_info ul li, #credits_and_info ul li a, #about_sa{
+    color:wheat;
+    font-family: verdana;
+    font-weight: bold;
+}
+#credits_and_info ul li a:hover{
+    color:aqua;
+}
+
+#credit_heading{
+    font-family: ackno;
+    color:white; 
+    font-size:large;
+    margin-bottom: 5px;
+    margin-top:10px;
+}
+
+.tg {
+    
+    border-spacing: 0;
+    width:90%;
+    border-radius: 8px;
+    border:4px solid var(--table_border_color);
+  }
+
+  .tg td {
+    border-style: solid;
+    border-width: 0px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+  }
+
+  .tg th {
+    border-style: solid;
+    border-width: 0px;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    overflow: hidden;
+    padding: 10px 5px;
+    word-break: normal;
+  }
+
+  .tg .tg-rsib {
+    background-color: var(--table_border_color);
+    border-bottom :2px solid white;
+    color: #ffffff;
+    font-family: "Arial Black", Gadget, sans-serif !important;
+    font-size: 22px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: top
+  }
+
+  .tg .tg-dgvj {
+    /* background-color: #010066; */
+    background-color: var(--top_title_color);
+    border-color: #ffffff;
+    color: #ffffff;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: top
+  }
+
+  .tg .tg-4m8a {
+    font-family: Verdana, Geneva, sans-serif !important;
+    font-style: italic;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: top;
+    background-color: whitesmoke;
+  }
+
+@media (min-width:768px) {
+    #input_box{
+        width:75%;
+    }
+    #length_checker{
+        margin-right:12.5%;
+    }
+    #top_title{
+        font-size: 4.2vmax;
+    }
+    #top_logo{
+        width:8vmax;
+    }
+    #execute{
+        margin-right:12.5%;
+    }
+    #credits_and_info{
+        width:60%;
+        margin-left:auto;
+        margin-right: auto;
+    }
+    .tg{
+        width:60%;
+    }
+    #details_about_output{
+        font-size: large;
+    }
+    .tg .tg-4m8a{
+        font-size:large;
+    }
+    .tg .tg-dgvj{ 
+        font-size:larger;
+    }
+}
+

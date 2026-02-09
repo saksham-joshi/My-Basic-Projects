@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+  <meta name="author" content="SAKSHAM JOSHI">
+  <meta name="description" content="Analyze the sentiment of your text">
+  <meta name="keywords" content="sentiment meaning, sentimental meaning in hindi, sentimental,sentiment, sentiment analysis, sentiment analysis project">
+
+  <link rel="icon" href="./static/images/SentimentAnalyzer_tabicon.png">
+  <link rel="stylesheet" href="./static/style.css">
+
+  <script src="./static/logic.js"></script>
+  <title>Sentiment Analyzer</title>
+  
+  <style>
+    @font-face {
+    font-family: berlin_sans;
+    src: url("./static/Fonts/BRLNSR.TTF");
+  }
+
+  @font-face {
+    font-family: roboto_condensed;
+    src: url("./static/Fonts/RobotoCondensed-Regular.ttf");
+  }
+
+  @font-face {
+    font-family: ackno;
+    src: url("./static/Fonts/ACKNO.TTF");
+  }
+
+  @font-face {
+    font-family: verdana;
+    src: url("./static/Fonts/verdana.ttf");
+  }
+  @font-face {
+    font-family: ardela_edge;
+    src: url("./static/Fonts/ARDELA\ EDGE\ X01\ Black.ttf");
+  }
+
+  body {
+    background-color: #f1fbfd;
+  }
+  </style>
+</head>
+
+<body>
+  <nav id="topbar">
+    <img id="top_logo" src="./static/images/SentimentAnalyzer.png" alt="icon">
+    <span id="top_title">Sentiment Analyzer</span>
+  </nav>
+
+
+  <center>
+    <div id="about_sentiment_analyzer">
+      Analyze the sentiment of your blogs or posts and understand the reason they are not ranking up.
+    </div>
+  </center>
+
+  <div>
+    <div id="length_checker">
+      <span id="input_length">0</span>/2000
+    </div>
+  </div>
+  <br>
+  <br>
+  <center>
+    <textarea id="input_box" oninput="input_changed_in_input_box()" maxlength="2000"
+      placeholder="Input your text here..."></textarea>
+  </center>
+  <button id="execute" onclick="done_clicked()">DONE</button>
+  <br>
+
+  <div id="output_area"></div>
+  <br><br>
+  <div id="details_about_output">
+    &nbsp⩥ Output Terminologies
+    <ol>
+      <li>Positive Score: It is the number of positive words in your text.</li>
+      <li>Negative Score: It is the number of negative words in your text.</li>
+      <li>Subjectivity Score: This is the score that determines if a given text is objective or subjective.</li>
+      <li>Polarity Score: This is the score that determines if a given text is positive or negative in nature. Range is from -1 to +1.</li>
+      <li>Fog Index: This is the value which determines the readability of your text. The lesser the fog index, the better is readability.</li>
+      <li>Complex Words: Words which contains more than two syllables are called complex words.</li>
+      <li>Unidentified words: Words which are not registered or recorded in our data.</li>
+    </ol>
+  </div>
+  <footer id="credits_and_info">
+    <br>
+    <div id="credit_heading"> ⩥ About : </div>
+    <div id="about_sa">
+      Sentiment Analyzer is a web Application developed in Python using Flask Framework and <a style="color:inherit;"
+        href="https://github.com/saksham-joshi/Sentiment_Analyzer">SentimentAnalyzer</a> API which is helpful to analyze
+      the sentiment of a given text with accuracy of 93.46%. Also, none of your analyzed text are stored on the server
+      which makes it more secure and anonymous.
+    </div>
+    <br>
+    <div id="credit_heading"> ⩥ Tools used :</div>
+    <ul>
+      <li>&nbsp <a href="https://github.com/saksham-joshi/Sentiment_Analyzer">SentimentAnalyzerAPI</a></li>
+      <li>&nbsp Python.</li>
+      <li>&nbsp Flask.</li>
+      <li>&nbsp HTML.</li>
+      <li>&nbsp CSS.</li>
+      <li>&nbsp Javascript.</li>
+    </ul>
+    <div id="credit_heading"> ⩥ Developer Info : </div>
+    <ul>
+      <li>&nbsp Name: SAKSHAM JOSHI </li>
+      <li>&nbsp <a href="https://sakshamjoshi.netlify.app/"> Portfolio </a> </li>
+      <li>&nbsp <a href="https://www.linkedin.com/in/sakshamjoshi27"> Linkedin </a> </li>
+      <li>&nbsp <a href="https://github.com/saksham-joshi"> GitHub </a> </li>
+      <li>&nbsp <a href="https://twitter.com/sakshamjoshi27/"> X(Twitter) </a> </li>
+    </ul>
+  </footer>
+
+</body>
+
+</html>
+  
