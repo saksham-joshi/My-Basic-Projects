@@ -2,9 +2,9 @@
 
 # ⚡ My Basic Projects
 
-### A collection of 21 beginner projects showcasing my programming journey
+### A collection of 24 beginner projects showcasing my programming journey
 
-![Projects](https://img.shields.io/badge/projects-22-brightgreen)
+![Projects](https://img.shields.io/badge/projects-24-brightgreen)
 ![Languages](https://img.shields.io/badge/languages-4-blue)
 ![Status](https://img.shields.io/badge/status-learning-yellow)
 
@@ -16,7 +16,8 @@
 
 Welcome to my collection of basic projects! This repository represents the early stages of my programming journey, where I explored different technologies and built practical applications to strengthen my development skills.
 
-> **💡 Note:** These projects were created during my initial learning phase. While they may contain imperfections and areas for improvement, they represent valuable learning experiences and my growth as a developer.
+> [!NOTE]
+>  These projects were created during my initial learning phase. While they may contain imperfections and areas for improvement, they represent valuable learning experiences and my growth as a developer.
 
 ---
 
@@ -30,6 +31,10 @@ Welcome to my collection of basic projects! This repository represents the early
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 ![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
+![NextJs](https://img.shields.io/badge/NextJS-FFFFFF?style=for-the-badge&logo=next.js&logoColor=black)
+![TypeScript](https://img.shields.io/badge/TypeScript-1572B6?style=for-the-badge&logo=typescript&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+
 
 </div>
 
@@ -37,41 +42,136 @@ Welcome to my collection of basic projects! This repository represents the early
 
 ## 📂 Project Categories
 
-### 🌐 HTML/CSS/JavaScript (3 Projects)
+<table>
+<tr>
+<th width="25%">Technology</th>
+<th width="35%">Project</th>
+<th width="40%">Description</th>
+</tr>
 
-- **Folk Weather** - Weather application
-- **MyUtsav** - Event celebration platform
-- **Temperature Converter** - Unit conversion tool
+<!-- HTML/CSS/JavaScript Projects -->
+<tr>
+<td rowspan="3"><strong>🌐 HTML/CSS/JS</strong><br/>(3 Projects)</td>
+<td><strong>Folk Weather</strong></td>
+<td>Weather application</td>
+</tr>
+<tr>
+<td><strong>MyUtsav</strong></td>
+<td>Event celebration platform</td>
+</tr>
+<tr>
+<td><strong>Temperature Converter</strong></td>
+<td>Unit conversion tool</td>
+</tr>
 
-### ☕ Java (5 Projects)
+<!-- Java Projects -->
+<tr>
+<td rowspan="5"><strong>☕ Java</strong><br/>(5 Projects)</td>
+<td><strong>ATM Interface</strong></td>
+<td>Banking system simulator</td>
+</tr>
+<tr>
+<td><strong>Eval-Java</strong></td>
+<td>Expression evaluator</td>
+</tr>
+<tr>
+<td><strong>Java Calculator</strong></td>
+<td>Mathematical calculator</td>
+</tr>
+<tr>
+<td><strong>Minter Chat App</strong></td>
+<td>Simple messaging application</td>
+</tr>
+<tr>
+<td><strong>Number Guessing Game</strong></td>
+<td>Interactive guessing game</td>
+</tr>
 
-- **ATM Interface** - Banking system simulator
-- **Eval-Java** - Expression evaluator
-- **Java Calculator** - Mathematical calculator
-- **Minter Chat App** - Simple messaging application
-- **Number Guessing Game** - Interactive guessing game
+<!-- Next.js Projects -->
+<tr>
+<td rowspan="2"><strong>⚛️ Next.js</strong><br/>(2 Projects)</td>
+<td><strong>Community Organization</strong></td>
+<td>Full stack community organization app</td>
+</tr>
+<tr>
+<td><strong>Unite Wings</strong></td>
+<td>Educational/student support organization app</td>
+</tr>
 
-### 🐍 Python (13 Projects)
 
-#### 🎨 Utility Tools
-- **Audio Creator** - Audio generation tool
-- **Color Picker** - Color selection utility
-- **Python Calculator** - Mathematical operations
+<!-- Python Projects - Utility Tools -->
+<tr>
+<td rowspan="17"><strong>🐍 Python</strong><br/>(14 Projects)</td>
+<td colspan="2"><strong><em>🎨 Utility Tools</em></strong> ↴</td>
+</tr>
+<tr>
+<td><strong>Audio Creator</strong></td>
+<td>Audio generation tool</td>
+</tr>
+<tr>
+<td><strong>Color Picker</strong></td>
+<td>Color selection utility</td>
+</tr>
+<tr>
+<td><strong>Python Calculator</strong></td>
+<td>Mathematical operations</td>
+</tr>
 
-#### 📊 Data Analysis & Cleaning
-- **Daily Exchange Rates** - Currency exchange tracker
-- **Mobile Data Cleaning** - Mobile dataset preprocessing
-- **Vehicles Data Cleaning** - Vehicle dataset analysis
-- **Video Games Data Cleaning** - Gaming data processing
-- **Metro Interstate Traffic** - Traffic data analysis
-- **Space Mission** - Space exploration simulation
-- **Web Scrape and Analysis** - Web data extraction and insights
+<!-- Python Projects - Data Analysis -->
+<tr>
+<td colspan="2"><strong><em>📊 Data Analysis & Cleaning</em></strong>↴</td>
+</tr>
+<tr>
+<td><strong>Daily Exchange Rates</strong></td>
+<td>Currency exchange tracker</td>
+</tr>
+<tr>
+<td><strong>Mobile Data Cleaning</strong></td>
+<td>Mobile dataset preprocessing</td>
+</tr>
+<tr>
+<td><strong>Prediction of Future Trends</strong></td>
+<td>Trend forecasting tool</td>
+</tr>
+<tr>
+<td><strong>Vehicles Data Cleaning</strong></td>
+<td>Vehicle dataset analysis</td>
+</tr>
+<tr>
+<td><strong>Video Games Data Cleaning</strong></td>
+<td>Gaming data processing</td>
+</tr>
+<tr>
+<td><strong>Metro Interstate Traffic</strong></td>
+<td>Traffic data analysis</td>
+</tr>
+<tr>
+<td><strong>Space Mission</strong></td>
+<td>Space exploration simulation</td>
+</tr>
+<tr>
+<td><strong>Web Scrape and Analysis</strong></td>
+<td>Web data extraction and insights</td>
+</tr>
 
-#### 🚀 Applications
-- **ChatGPT Desktop** - Desktop interface for ChatGPT
-- **Online Voting System** - Digital voting platform
-- **Prediction of Future Trends** - Trend forecasting tool
 
+<!-- Python Projects - Applications -->
+<tr>
+<td colspan="2"><strong><em>🚀 Applications</em></strong>↴</td>
+</tr>
+<tr>
+<td><strong>ChatGPT Desktop</strong></td>
+<td>Desktop interface for ChatGPT</td>
+</tr>
+<tr>
+<td><strong>Online Voting System</strong></td>
+<td>Digital voting platform</td>
+</tr>
+<tr>
+<td><strong>Sentiment Analyzer</strong></td>
+<td>Site + API for sentiment analysis</td>
+</tr>
+</table>
 
 ---
 
@@ -93,6 +193,10 @@ My-Basic-Projects/
 │   ├── Java Calculator
 │   ├── Minter Chat App
 │   └── Number Guessing Game
+│
+├── NextJS/
+│   ├── Community Organization
+│   └── Unite Wings
 │
 ├── Python/
 │   ├── Audio Creator
