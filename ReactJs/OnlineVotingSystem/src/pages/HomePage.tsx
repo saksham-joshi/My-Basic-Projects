@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { collection, getDocs, query, orderBy, limit } from "firebase/firestore";
 import { db } from "../lib/firebase";
 import type { Election } from "../lib/types";
-import { AshokaChakra, ElectionCommission } from "../lib/img";
+import { AshokaEmblemBlack, ElectionCommission } from "../lib/img";
 
 function StatusBadge({ status }: { status: Election["status"] }) {
     const styles = {
@@ -51,8 +51,8 @@ export function HomePage() {
             <section className="relative overflow-hidden bg-gradient-to-br from-[#FF9933] to-[#128807] text-white">
                 <div className="absolute inset-0 ">
                     <img
-                        src={AshokaChakra}
-                        alt="Ashoka Chakra"
+                        src={AshokaEmblemBlack}
+                        alt="Ashoka Emblem"
                         className="absolute right-[-5%] top-[-10%] w-[500px] opacity-40 rotate-12"
                     />
                 </div>

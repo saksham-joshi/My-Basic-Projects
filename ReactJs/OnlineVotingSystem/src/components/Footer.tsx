@@ -1,4 +1,4 @@
-import { AshokaChakra } from "@/lib/img";
+import { AshokaEmblemWhite } from "@/lib/img";
 
 export function Footer() {
     return (
@@ -7,8 +7,8 @@ export function Footer() {
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                     <div className="flex items-center gap-3">
                         <img
-                            src={AshokaChakra}
-                            alt="Ashoka Chakra"
+                            src={AshokaEmblemWhite}
+                            alt="Ashoka Emblem"
                             className="h-8 w-8 opacity-60"
                         />
                         <div>
