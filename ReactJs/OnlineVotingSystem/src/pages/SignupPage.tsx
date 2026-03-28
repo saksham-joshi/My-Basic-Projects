@@ -3,6 +3,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import { auth, db } from "../lib/firebase";
+import { getFriendlyAuthError } from "../lib/firebase-errors";
 import { ElectionCommission } from "../lib/img";
 
 export function SignupPage() {
@@ -35,6 +36,14 @@ export function SignupPage() {
 
         setLoading(true);
         try {
+            if (!auth || !db) {
+                setError(
+                    "Firebase is not initialized. Please check your .env values and restart the app."
+                );
+                setLoading(false);
+                return;
+            }
+
             const email = `${voterId.replace(/\s/g, "")}@voter.votingsystem.in`;
             const userCred = await createUserWithEmailAndPassword(auth, email, password);
             await setDoc(doc(db, "users", userCred.user.uid), {
@@ -47,15 +56,9 @@ export function SignupPage() {
                 createdAt: Date.now(),
             });
             navigate("/dashboard/voter");
-        } catch (err: any) {
+        } catch (err) {
             console.error("Signup error:", err);
-            if (err.code === "auth/email-already-in-use") {
-                setError("An account with this Voter ID already exists.");
-            } else if (err.code === "auth/weak-password") {
-                setError("Password must be at least 6 characters.");
-            } else {
-                setError("Failed to create account. Please try again.");
-            }
+            setError(getFriendlyAuthError(err, "signup"));
         } finally {
             setLoading(false);
         }

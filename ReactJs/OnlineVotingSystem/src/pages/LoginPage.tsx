@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../lib/firebase";
+import { getFriendlyAuthError } from "../lib/firebase-errors";
 import type { UserRole } from "../lib/types";
 import { ElectionCommission } from "../lib/img";
 
@@ -19,13 +20,21 @@ export function LoginPage() {
         setLoading(true);
 
         try {
+            if (!auth) {
+                setError(
+                    "Firebase is not initialized. Please check your .env values and restart the app."
+                );
+                setLoading(false);
+                return;
+            }
+
             // We use identifier as email format: identifier@role.votingsystem.in
             const email = `${identifier.replace(/\s/g, "")}@${role}.votingsystem.in`;
             await signInWithEmailAndPassword(auth, email, password);
             navigate(`/dashboard/${role}`);
-        } catch (err: any) {
+        } catch (err) {
             console.error("Login error:", err);
-            setError("Invalid credentials. Please check your details and try again.");
+            setError(getFriendlyAuthError(err, "login"));
         } finally {
             setLoading(false);
         }
