@@ -31,7 +31,7 @@ export function Navbar() {
                     <div className="flex items-center gap-2 sm:gap-4">
                         <Link
                             to="/elections"
-                            className="text-sm font-medium text-cyan-600 hover:text-blue-600 transition-colors px-3 py-2 rounded-lg hover:bg-indigo-50"
+                            className="text-sm font-medium text-cyan-600 hover:text-blue-900 transition-colors px-3 py-2 rounded-lg hover:bg-indigo-50"
                         >
                             Elections
                         </Link>

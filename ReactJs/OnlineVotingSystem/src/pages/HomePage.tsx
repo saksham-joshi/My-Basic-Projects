@@ -64,7 +64,7 @@ export function HomePage() {
                                 alt="ECI Logo"
                                 className="h-14 w-auto bg-white rounded-lg p-1.5"
                             />
-                            <span className="text-cyan-600 text-sm font-medium">
+                            <span className="text-white-900 text-sm font-medium">
                                 Election Commission of India
                             </span>
                         </div>
