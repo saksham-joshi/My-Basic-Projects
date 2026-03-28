@@ -1,94 +1,32 @@
 #!/usr/bin/env bun
-/**
- * Database Schema Setup Script
- *
- * This script initializes the Firestore database with the required collections
- * and creates a sample admin account. Run this once to set up the database.
- *
- * Usage: bun run setup-db.ts
- *
- * Firestore Collections:
- *
- * 1. users
- *    - uid: string (Firebase Auth UID)
- *    - role: "admin" | "voter" | "candidate"
- *    - name: string
- *    - aadharCard: string (12 digits)
- *    - voterId?: string (for voters and candidates)
- *    - panCard?: string (for candidates)
- *    - place: string (lowercase city/constituency)
- *    - createdAt: number (timestamp)
- *
- * 2. elections
- *    - title: string
- *    - position: string (e.g., "Mayor", "MLA")
- *    - place: string (lowercase, matches voter places)
- *    - startTime: number (timestamp)
- *    - endTime: number (timestamp)
- *    - status: "upcoming" | "active" | "completed"
- *    - createdBy: string (admin uid)
- *    - createdAt: number (timestamp)
- *
- * 3. candidates
- *    - electionId: string (reference to elections doc)
- *    - userId: string (reference to users doc)
- *    - name: string
- *    - aadharCard: string
- *    - panCard: string
- *    - voterId: string
- *    - party: string
- *    - status: "pending" | "approved" | "rejected"
- *    - voteCount: number
- *    - appliedAt: number (timestamp)
- *
- * 4. votes
- *    - electionId: string (reference to elections doc)
- *    - voterId: string (user uid, NOT voter ID card)
- *    - candidateId: string (reference to candidates doc)
- *    - votedAt: number (timestamp)
- *
- * Firestore Security Rules (paste in Firebase Console):
- *
- * rules_version = '2';
- * service cloud.firestore {
- *   match /databases/{database}/documents {
- *     // Users collection
- *     match /users/{userId} {
- *       allow read: if request.auth != null;
- *       allow create: if request.auth != null && request.auth.uid == userId;
- *       allow update: if request.auth != null && request.auth.uid == userId;
- *     }
- *
- *     // Elections collection - readable by everyone
- *     match /elections/{electionId} {
- *       allow read: if true;
- *       allow create: if request.auth != null;
- *       allow update: if request.auth != null;
- *     }
- *
- *     // Candidates collection - readable by everyone
- *     match /candidates/{candidateId} {
- *       allow read: if true;
- *       allow create: if request.auth != null;
- *       allow update: if request.auth != null;
- *       allow delete: if request.auth != null;
- *     }
- *
- *     // Votes collection
- *     match /votes/{voteId} {
- *       allow read: if request.auth != null;
- *       allow create: if request.auth != null
- *         && request.resource.data.voterId == request.auth.uid;
- *     }
- *   }
- * }
- */
 
-import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, doc, setDoc } from "firebase/firestore";
+import { initializeApp, type FirebaseOptions } from "firebase/app";
+import {
+  createUserWithEmailAndPassword,
+  getAuth,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import {
+  collection,
+  doc,
+  getDocs,
+  getFirestore,
+  limit,
+  query,
+  setDoc,
+  where,
+} from "firebase/firestore";
 
-const requiredEnvVars = [
+type RuntimeEnv = Record<string, string | undefined>;
+
+const processEnv = (globalThis as { process?: { env?: RuntimeEnv } }).process
+  ?.env;
+const bunEnv = (globalThis as { Bun?: { env?: RuntimeEnv } }).Bun?.env;
+
+const readEnv = (key: string): string =>
+  (processEnv?.[key] ?? bunEnv?.[key] ?? "").trim();
+
+const requiredKeys = [
   "BUN_PUBLIC_FIREBASE_API_KEY",
   "BUN_PUBLIC_FIREBASE_AUTH_DOMAIN",
   "BUN_PUBLIC_FIREBASE_PROJECT_ID",
@@ -97,80 +35,175 @@ const requiredEnvVars = [
   "BUN_PUBLIC_FIREBASE_APP_ID",
 ] as const;
 
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    console.error(`❌ Missing environment variable: ${envVar}`);
-    process.exit(1);
-  }
+const missingKeys = requiredKeys.filter((key) => !readEnv(key));
+
+if (missingKeys.length > 0) {
+  console.error(
+    `❌ Missing Firebase environment variables: ${missingKeys.join(", ")}`
+  );
+  process.exit(1);
 }
 
-const firebaseConfig = {
-  apiKey: process.env.BUN_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.BUN_PUBLIC_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.BUN_PUBLIC_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.BUN_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.BUN_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.BUN_PUBLIC_FIREBASE_APP_ID,
+const firebaseConfig: FirebaseOptions = {
+  apiKey: readEnv("BUN_PUBLIC_FIREBASE_API_KEY"),
+  authDomain: readEnv("BUN_PUBLIC_FIREBASE_AUTH_DOMAIN"),
+  projectId: readEnv("BUN_PUBLIC_FIREBASE_PROJECT_ID"),
+  storageBucket: readEnv("BUN_PUBLIC_FIREBASE_STORAGE_BUCKET"),
+  messagingSenderId: readEnv("BUN_PUBLIC_FIREBASE_MESSAGING_SENDER_ID"),
+  appId: readEnv("BUN_PUBLIC_FIREBASE_APP_ID"),
 };
+
+const adminAadhar =
+  readEnv("SEED_ADMIN_AADHAR").replace(/\s/g, "") || "999999999999";
+const adminPassword = readEnv("SEED_ADMIN_PASSWORD") || "admin123456";
+const adminName = readEnv("SEED_ADMIN_NAME") || "Election Officer";
+const adminPlace = (readEnv("SEED_ADMIN_PLACE") || "india").toLowerCase();
+const adminEmail = `${adminAadhar}@admin.votingsystem.in`;
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-async function createAdminUser() {
-  console.log("\n🔧 Setting up database...\n");
-
-  // --- Create a sample Admin user ---
-  const adminAadhar = "999999999999"; // sample admin aadhar
-  const adminPassword = "admin123456"; // change this
-
-  const adminEmail = `${adminAadhar}@admin.votingsystem.in`;
-
+async function ensureAdminUser(): Promise<string> {
   try {
-    console.log("👤 Creating admin account...");
     const userCred = await createUserWithEmailAndPassword(
       auth,
       adminEmail,
       adminPassword
     );
-
-    await setDoc(doc(db, "users", userCred.user.uid), {
-      uid: userCred.user.uid,
-      role: "admin",
-      name: "Election Officer",
-      aadharCard: adminAadhar,
-      place: "india",
-      createdAt: Date.now(),
-    });
-
-    console.log("✅ Admin account created successfully!");
-    console.log(`   Email: ${adminEmail}`);
-    console.log(`   Aadhar: ${adminAadhar}`);
-    console.log(`   Password: ${adminPassword}`);
-    console.log(`   UID: ${userCred.user.uid}`);
-  } catch (err: any) {
-    if (err.code === "auth/email-already-in-use") {
-      console.log("ℹ️  Admin account already exists, skipping...");
-    } else {
-      console.error("❌ Error creating admin:", err.message);
+    console.log(`✅ Admin auth account created: ${adminEmail}`);
+    return userCred.user.uid;
+  } catch (error: any) {
+    if (error?.code === "auth/email-already-in-use") {
+      const signedIn = await signInWithEmailAndPassword(
+        auth,
+        adminEmail,
+        adminPassword
+      );
+      console.log(`ℹ️ Admin auth account already exists: ${adminEmail}`);
+      return signedIn.user.uid;
     }
+
+    if (error?.code === "auth/configuration-not-found") {
+      throw new Error(
+        "Firebase Authentication is not configured. Enable Authentication and turn on Email/Password provider in Firebase Console."
+      );
+    }
+
+    throw error;
   }
-
-  console.log("\n📋 Database Schema Summary:");
-  console.log(
-    "   Collection: users       — User profiles (admin/voter/candidate)"
-  );
-  console.log("   Collection: elections   — Election definitions");
-  console.log(
-    "   Collection: candidates  — Candidate applications per election"
-  );
-  console.log("   Collection: votes       — Individual votes (secret ballot)");
-  console.log(
-    "\n✅ Setup complete! Don't forget to set Firestore security rules."
-  );
-  console.log("   (See the rules in the comments at the top of this file)\n");
-
-  process.exit(0);
 }
 
-createAdminUser();
+async function ensureAdminProfile(uid: string) {
+  await setDoc(
+    doc(db, "users", uid),
+    {
+      uid,
+      role: "admin",
+      name: adminName,
+      aadharCard: adminAadhar,
+      place: adminPlace,
+      createdAt: Date.now(),
+    },
+    { merge: true }
+  );
+
+  console.log("✅ Admin profile document ensured in users collection.");
+}
+
+async function ensureSampleElection(adminUid: string): Promise<string> {
+  const existingElectionSnap = await getDocs(
+    query(collection(db, "elections"), limit(1))
+  );
+
+  if (!existingElectionSnap.empty) {
+    const existing = existingElectionSnap.docs[0];
+    console.log(`ℹ️ Elections already exist. Keeping existing data (${existing.id}).`);
+    return existing.id;
+  }
+
+  const now = Date.now();
+  const startTime = now + 24 * 60 * 60 * 1000;
+  const endTime = startTime + 8 * 60 * 60 * 1000;
+  const electionRef = doc(collection(db, "elections"));
+
+  await setDoc(electionRef, {
+    title: "Sample Municipal Election",
+    position: "Mayor",
+    place: adminPlace,
+    startTime,
+    endTime,
+    status: "upcoming",
+    createdBy: adminUid,
+    createdAt: now,
+  });
+
+  console.log(`✅ Sample election created: ${electionRef.id}`);
+  return electionRef.id;
+}
+
+async function ensureSampleCandidate(electionId: string) {
+  const existingCandidateSnap = await getDocs(
+    query(
+      collection(db, "candidates"),
+      where("electionId", "==", electionId),
+      limit(1)
+    )
+  );
+
+  if (!existingCandidateSnap.empty) {
+    console.log("ℹ️ Candidate data already exists for sample election.");
+    return;
+  }
+
+  const candidateRef = doc(collection(db, "candidates"));
+  await setDoc(candidateRef, {
+    electionId,
+    userId: "seed-candidate-001",
+    name: "Sample Candidate",
+    aadharCard: "111122223333",
+    panCard: "ABCDE1234F",
+    voterId: "VOTER0001",
+    party: "Independent",
+    status: "approved",
+    voteCount: 0,
+    appliedAt: Date.now(),
+  });
+
+  console.log(`✅ Sample candidate created: ${candidateRef.id}`);
+}
+
+async function ensureMetaDocument() {
+  await setDoc(
+    doc(db, "meta", "bootstrap"),
+    {
+      version: 1,
+      initializedAt: Date.now(),
+      notes: "Initial bootstrap document for Online Voting System",
+    },
+    { merge: true }
+  );
+
+  console.log("✅ Meta bootstrap document created.");
+}
+
+async function bootstrap() {
+  console.log("\n🚀 Starting Firestore bootstrap...\n");
+
+  const adminUid = await ensureAdminUser();
+  await ensureAdminProfile(adminUid);
+
+  const electionId = await ensureSampleElection(adminUid);
+  await ensureSampleCandidate(electionId);
+  await ensureMetaDocument();
+
+  console.log("\n🎉 Firestore bootstrap complete.");
+  console.log(`Admin login ID: ${adminAadhar} (role: admin)`);
+  console.log(`Admin password: ${adminPassword}`);
+}
+
+bootstrap().catch((error) => {
+  console.error("\n❌ Firestore bootstrap failed.");
+  console.error(error);
+  process.exit(1);
+});
