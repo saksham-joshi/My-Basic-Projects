@@ -3,7 +3,7 @@
 ```
 rules_version = '2';
 service cloud.firestore {
-   match /databases/{database}/documents {
+  match /databases/{database}/documents {
      // Users collection
      match /users/{userId} {
        allow read: if request.auth != null;
@@ -32,6 +32,11 @@ service cloud.firestore {
        allow create: if request.auth != null
          && request.resource.data.voterId == request.auth.uid;
      }
-   }
+
+    match /meta/{docId} {
+      allow read: if true; 
+      allow write: if request.auth != null; // Allows the bootstrap script to finish
+    }
+  }
 }
 ```
