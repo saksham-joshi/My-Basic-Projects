@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QApplication, QWidget, QTextEdit, QPushButton, QComboBox, QMenuBar, QAction, QMessageBox, QLabel, QFileDialog, QLineEdit, QCheckBox
 from PyQt5.QtGui import QIcon, QFont
 
-from util.text_2_speech import create_audio
-from util.Json_Manip import json_manip
+from util.text_2_speech import createAudio
+from util.json_manip import JsonManip
 
 
 class UI(QWidget):
@@ -14,8 +14,6 @@ class UI(QWidget):
     font_label = QFont("Cascadia Mono", 10, weight=97)
 
     def __init__(this, *args, **kwargs):
-
-        json_manip.OS_detected()
 
         this.app = QApplication([])
 
@@ -43,12 +41,12 @@ class UI(QWidget):
         label_lang.setStyleSheet(open("util/CSS/QLabel.css").read())
 
         this.language = QComboBox(this)
-        this.language.addItems(json_manip.get_value("languages"))
+        this.language.addItems(JsonManip.getValue("languages"))
         this.language.setGeometry(30, label_lang.y()+label_lang.height(), this.width()//3, 30)
         this.language.setStyleSheet(open("util/CSS/QComboBox.css").read())
         this.language.setFont(this.font_combobox)
-        this.language.setCurrentText(json_manip.get_value("current_language"))
-        this.language.currentTextChanged.connect(lambda: json_manip.update_config("current_language", this.language.currentText()))
+        this.language.setCurrentText(JsonManip.getValue("current_language"))
+        this.language.currentTextChanged.connect(lambda: JsonManip.updateConfig("current_language", this.language.currentText()))
 
         label_speed = QLabel("Fast", this)
         label_speed.setGeometry(this.language.x()+this.language.width()+50,this.textbox.y()+this.textbox.height()+20, this.width()//3, 30)
@@ -65,12 +63,12 @@ class UI(QWidget):
         label_accent.setStyleSheet(open("util/CSS/QLabel.css").read())
 
         this.accent = QComboBox(this)
-        this.accent.addItems(json_manip.get_value("accent"))
+        this.accent.addItems(JsonManip.getValue("accent"))
         this.accent.setGeometry(label_accent.x(), this.language.y(), this.language.width(), this.language.height())
         this.accent.setStyleSheet(open("util/CSS/QComboBox.css").read())
         this.accent.setFont(this.font_combobox)
-        this.accent.setCurrentText(json_manip.get_value("current_accent"))
-        this.accent.currentTextChanged.connect(lambda: json_manip.update_config("current_accent", this.accent.currentText()))
+        this.accent.setCurrentText(JsonManip.getValue("current_accent"))
+        this.accent.currentTextChanged.connect(lambda: JsonManip.updateConfig("current_accent", this.accent.currentText()))
 
         this.play = QPushButton("Play", this)
         this.play.setGeometry(this.width()//2-50, this.language.y()+this.language.height()+30, 100, 50)
@@ -89,8 +87,8 @@ class UI(QWidget):
         this.save_loc_box.setFont(QFont("Times new Roman", 10, weight=97))
         this.save_loc_box.setDisabled(True)
         this.save_loc_box.setPlaceholderText("Default Location")
-        this.save_loc_box.setText(json_manip.get_value("save_location"))
-        this.save_loc_box.textChanged.connect(lambda: json_manip.update_config("save_location", this.save_loc_box.text()))
+        this.save_loc_box.setText(JsonManip.getValue("save_location"))
+        this.save_loc_box.textChanged.connect(lambda: JsonManip.updateConfig("save_location", this.save_loc_box.text()))
 
         this.choose_directory = QPushButton("Choose", this)
         this.choose_directory.setGeometry(this.save_loc_box.x() + this.save_loc_box.width()+10, this.save_loc_box.y(), this.save_loc_box.width()//4, this.save_loc_box.height())
@@ -109,7 +107,7 @@ class UI(QWidget):
 
         about = QAction("About", this.menubar)
         about.setFont(this.font_menu)
-        about.triggered.connect(lambda : this.__message_display("About" ,json_manip.get_value("about_message") ))
+        about.triggered.connect(lambda : this.__message_display("About" ,JsonManip.getValue("about_message") ))
 
         this.menubar.addAction(about)
         this.menubar.show()
@@ -124,7 +122,7 @@ class UI(QWidget):
         qm.exec()
 
     def __play_pressed(this):
-        x = create_audio(this.textbox.toPlainText(), this.language.currentText(
+        x = createAudio(this.textbox.toPlainText(), this.language.currentText(
         ), this.accent.currentText(), this.save_loc_box.text(), this.speed_checkbox.isChecked())
         if x.__len__() != 0:
             this.__message_display("Text-to-Speech", x)
