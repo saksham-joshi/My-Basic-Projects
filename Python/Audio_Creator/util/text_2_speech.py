@@ -11,19 +11,22 @@ def createAudio(text : str , lang : str , accent : str, directory : str,fast : b
 
         x = gTTS(text=text,tld=accent,lang=lang,slow= not fast)
 
-        path = f"{directory}/{(text[:30].strip()+".mp3").replace("/", "_").replace("\\", "_").replace(":", "_")}"
+        path = f"{directory[:-1] if directory[-1] in '/\\' else directory}/{(text[:30].strip()+".mp3").replace("/", "_").replace("\\", "_").replace(":", "_")}"
+
+        print(f" >> Saving file to path: '{path}'")
 
         tries = 3
 
         while tries > 0 :
             try :
                 x.save(path)
+                print(f" >> Successfully saved file to '{path}'")
                 break
-            except PermissionError : path = "Audios/tts_audio.mp3"
+            except PermissionError: path = "Audios/tts_audio.mp3"
 
             except OSError: path = directory+"tts_audio.mp3"
 
-            except : path = "Audios/tts_audio.mp3"
+            except Exception as e : return f"Failed to saved the file due to the following error: {e}"
             
             tries -= 1
         
